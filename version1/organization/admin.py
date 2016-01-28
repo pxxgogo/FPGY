@@ -9,7 +9,7 @@ class OrganizationAdmin(admin.ModelAdmin):
         ('photo',              {'fields': ['photo']}),
         ('website',            {'fields': ['website']}),
     ]
-    list_display = ('name','admin','member','photo','website')
+    list_display = ('name','photo','website')
 
 admin.site.register(Organization,OrganizationAdmin)
 # Register your models here.

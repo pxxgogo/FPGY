@@ -20,11 +20,18 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'version1.index.index'),
-    url(r'^login$','account.login.login'),
+    url(r'^$', 'account.login.login'),
+    url(r'^login$', 'account.login.login'),
+    url(r'^profile$', 'account.profile.profile'),
+    url(r'^changeInfo$', 'account.profile.changeInfo'),
+    url(r'^changePassword$', 'account.profile.changePassword'),
+    url(r'^infoChanged$', 'account.profile.infoChanged'),
+    url(r'^index/$','version1.index.index'),
     url(r'^register$','account.register.register'),
     url(r'^logout$','account.logout.logout'),
     url(r'^organizationList$','organization.views.list'),
-    url(r'^activityDetail/(?P<num>\d+)/$','activity.views.activityDetail'),
+    url(r'^organization/(?P<id>\d+)/$','organization.views.organizationInfo'),
+    url(r'^addNotificationTo_(?P<organizaitonID>\d+)/$','notification.views.addNotification'),
+    url(r'^addActivityTo_(?P<organizaitonID>\d+)/$','activity.views.addActivity'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

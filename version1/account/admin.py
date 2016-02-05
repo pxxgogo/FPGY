@@ -7,6 +7,7 @@ class AccountAdmin(admin.ModelAdmin):
         ('username',               {'fields': ['username']}),
         ('password',               {'fields': ['password']}),
         ('realName',               {'fields': ['realName']}),
+        ('gender',               {'fields': ['gender']}),
         ('email',               {'fields': ['email']}),
         ('studentID',               {'fields': ['studentID']}),
         ('major',               {'fields': ['major']}),
@@ -16,7 +17,7 @@ class AccountAdmin(admin.ModelAdmin):
         ('date_joined',               {'fields': ['date_joined']}),
         ('photo',               {'fields': ['photo']}),
     ]
-    list_display = ('username','password','realName','email','studentID','major','is_staff','is_active','last_login','date_joined','photo')
+    list_display = ('username','password','realName','gender','email','studentID','major','is_staff','is_active','last_login','date_joined','photo')
 
 admin.site.register(AccountUser,AccountAdmin)
 

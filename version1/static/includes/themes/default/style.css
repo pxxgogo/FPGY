@@ -129,9 +129,29 @@
 		text-align:center !important;
 		padding-left:0px !important;
 	}
+	
+	#organizationList #organizationList_filters {
+		text-align:center !important;
+		padding-left:0px !important;
+	}
+	
+	#organizationMember #organizationMember_filters {
+		text-align:center !important;
+		padding-left:0px !important;
+	}
+	
 	#team #team_container .photo {
 		width: 100% !important;
 	}
+	
+	#organizationList #organizationList_container .photo {
+		width: 100% !important;
+	}
+	
+	#organizationMember #organizationMember_container .photo {
+		width: 100% !important;
+	}
+	
 	.project-detail .project-info{
 		text-align:center;
 		margin-top:30px;
@@ -1942,6 +1962,227 @@ footer hr{
 	width:100%;
 }
 
+#organizationList{
+	margin-top:30px;
+	margin-bottom:30px;
+}
+
+#organizationList #organizationList_filters_container{
+	border-bottom:1px solid #ddd;
+	padding-bottom:20px;
+}
+
+#organizationList #organizationList_filters_container h4{
+	font-family: 'Open Sans','Lucida Sans Unicode','Lucida Grande',sans-serif;
+	margin-top:0px;
+	font-weight:400;
+}
+#organizationList #organizationList_filters {
+	list-style-type: none;
+	text-align:right;
+	font-size:14px;
+}
+
+#organizationList #organizationList_filters li {
+	display: inline-block;
+	margin: 0px; 
+}
+
+#organizationList #organizationList_filters li.separator {
+	color: #ccc;
+	font-weight: 200; 
+	margin: 0px 3px;
+}
+
+#organizationList #organizationList_filters li a {
+	-webkit-transition: color .2s;
+	-moz-transition: color .2s;
+	-ms-transition: color .2s;
+	transition: color .2s; 
+}
+
+#organizationList #organizationList_filters li a.active {
+	color: #222;
+}
+
+#organizationList #organizationList_container {
+	margin-bottom: 50px; 
+	margin-top:30px;
+}
+
+#organizationList #organizationList_container .photo {
+	width: 140px;
+	margin: 6px;
+	margin-bottom:10px;
+	display:inline-block;
+	position: relative; 
+}
+
+#organizationList #organizationList_container img {
+	width: 100%;
+}
+
+#organizationList #organizationList_container .photo:hover .mask {
+	display: block;
+	opacity: 1;
+	filter: alpha(opacity=100); 
+}
+      
+#organizationList #organizationList_container .photo .mask {
+        position: absolute;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        box-shadow:none;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        padding: 0px 20px;
+        width: 100%;
+        background: #f44;
+        -webkit-transition: opacity .25s ease-in-out;
+        -moz-transition: opacity .25s ease-in-out;
+        transition: opacity .25s ease-in-out; 
+}
+
+#organizationList #organizationList_container .photo .mask h4 {
+	font-family: 'Open Sans','Lucida Sans Unicode','Lucida Grande',sans-serif;
+	text-align:center;
+	color: #fff;
+	position: relative;
+	top: 10%; 
+	font-size:14px;
+	font-weight:600;
+}
+
+#organizationList #organizationList_container .photo .mask small {
+	color: #fff;
+	position: relative;
+	top: 10%;
+	display: block; 
+	text-align:center;
+	font-size:12px;
+}
+
+#organizationList #organizationList_container .photo .mask .twitter_handle {
+	color: #fff;
+	font-size: 12px;
+	position: absolute;
+	bottom: 7%;
+	left: 0; 
+	text-align:center;
+	width:100%;
+}
+
+#organizationMember{
+	margin-top:30px;
+	margin-bottom:30px;
+}
+
+#organizationMember #organizationMember_filters_container{
+	border-bottom:1px solid #ddd;
+	padding-bottom:20px;
+}
+
+#organizationMember #organizationMember_filters_container h4{
+	font-family: 'Open Sans','Lucida Sans Unicode','Lucida Grande',sans-serif;
+	margin-top:0px;
+	font-weight:400;
+}
+#organizationMember #organizationMember_filters {
+	list-style-type: none;
+	text-align:right;
+	font-size:14px;
+}
+
+#organizationMember #organizationMember_filters li {
+	display: inline-block;
+	margin: 0px; 
+}
+
+#organizationMember #organizationMember_filters li.separator {
+	color: #ccc;
+	font-weight: 200; 
+	margin: 0px 3px;
+}
+
+#organizationMember #organizationMember_filters li a {
+	-webkit-transition: color .2s;
+	-moz-transition: color .2s;
+	-ms-transition: color .2s;
+	transition: color .2s; 
+}
+
+#organizationMember #organizationMember_filters li a.active {
+	color: #222;
+}
+
+#organizationMember #organizationMember_container {
+	margin-bottom: 50px; 
+	margin-top:30px;
+}
+
+#organizationMember #organizationMember_container .photo {
+	width: 140px;
+	margin: 6px;
+	margin-bottom:10px;
+	display:inline-block;
+	position: relative; 
+}
+
+#organizationMember #organizationMember_container img {
+	width: 100%;
+}
+
+#organizationMember #organizationMember_container .photo:hover .mask {
+	display: block;
+	opacity: 1;
+	filter: alpha(opacity=100); 
+}
+      
+#organizationMember #organizationMember_container .photo .mask {
+        position: absolute;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        box-shadow:none;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        padding: 0px 20px;
+        width: 100%;
+        background: #f44;
+        -webkit-transition: opacity .25s ease-in-out;
+        -moz-transition: opacity .25s ease-in-out;
+        transition: opacity .25s ease-in-out; 
+}
+
+#organizationMember #organizationMember_container .photo .mask h4 {
+	font-family: 'Open Sans','Lucida Sans Unicode','Lucida Grande',sans-serif;
+	text-align:center;
+	color: #fff;
+	position: relative;
+	top: 10%; 
+	font-size:14px;
+	font-weight:600;
+}
+
+#organizationMember #organizationMember_container .photo .mask small {
+	color: #fff;
+	position: relative;
+	top: 10%;
+	display: block; 
+	text-align:center;
+	font-size:12px;
+}
+
+#organizationMember #organizationMember_container .photo .mask .twitter_handle {
+	color: #fff;
+	font-size: 12px;
+	position: absolute;
+	bottom: 7%;
+	left: 0; 
+	text-align:center;
+	width:100%;
+}
 
 /***sharrre styles ***/
  .sharrre{

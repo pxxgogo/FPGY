@@ -8,6 +8,6 @@ class AccountUser(AbstractUser):
     major = models.CharField(max_length=100);
     studentID = models.CharField(max_length=13);
     photo = models.ImageField(upload_to = "account");
-
+    gender = models.CharField(max_length=2);
 
 # Create your models here.

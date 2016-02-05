@@ -3,10 +3,10 @@
 			<div class="container">
 				<div class="login-box">
 					<div class="login-header">
-						<h4>注册账号</h4>
+						<h4>个人信息修改</h4>
 					</div>
 					<div class="login-form">
-						<form role="form" action="/register" method="post" enctype="multipart/form-data">
+						<form role="form" action="/infoChanged" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {% if error %}
                             <div class="form-group">
@@ -14,18 +14,15 @@
                                 {{error}}
                             </div>
                         {% endif %}
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icon-user"></i></span>
-                                <input id="username" class="form-control" type="text" name="username" placeholder="用户名">
-                            </div>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="icon-user"></i></span>
-								<input id="name" class="form-control" type="text" name="realName" placeholder="真实姓名">
+								<input id="name" class="form-control" type="text" name="realName" placeholder="真实姓名:{{user.realName}}">
 							</div>
-							<div class="form-group">
+                            <div class="form-group">
+                                {%ifequal user.gender '男'%}
 								<div class="radio" align="left">
 								<label>
-  									<input type="radio" name="gender" id="male" value="M"> 男
+  									<input type="radio" name="gender" id="male" value="M" checked> 男
 								</label>
 									</div>
 								<div class="radio" align="left">
@@ -33,48 +30,47 @@
   									<input type="radio" name="gender" id="female" value="F"> 女
 								</label>
 									</div>
+                                {%else%}
+                                <div class="radio" align="left">
+								<label>
+  									<input type="radio" name="gender" id="male" value="M"> 男
+								</label>
+									</div>
+								<div class="radio" align="left">
+								<label>
+  									<input type="radio" name="gender" id="female" value="F" checked> 女
+								</label>
+									</div>
+                                {% endifequal %}
 							</div>
 							<div class="input-group">
                                 <span class="input-group-addon"><i class="icon-user"></i></span>
-                                <input id="studentID" class="form-control" type="text" name="studentID" placeholder="学号">
+                                <input id="studentID" class="form-control" type="text" name="studentID" placeholder="学号:{{user.studentID}}">
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">@</span>
-                                <input id="E-mail" class="form-control" type="text" name="email" placeholder="电子邮箱">
+                                <input id="E-mail" class="form-control" type="text" name="email" placeholder="电子邮箱:{{user.email}}">
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icon-pencil"></i></span>
-                                <input id="phone" class="form-control" type="text" name="phone" placeholder="联系电话">
+                                <input id="phone" class="form-control" type="text" name="phone" placeholder="联系电话:{{user.phone}}">
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icon-pencil"></i></span>
-                                <input id="major" class="form-control" type="text" name="major" placeholder="专业">
+                                <input id="major" class="form-control" type="text" name="major" placeholder="专业:{{user.major}}">
                             </div>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="icon-pencil"></i></span>
-								<input id="password" class="form-control" type="password" name="password" placeholder="密码">
-							</div>
-							<div class="input-group">
-								<span class="input-group-addon"><i class="icon-pencil"></i></span>
-								<input id="password2" class="form-control" type="password" placeholder="再次输入密码">
-							</div>
-							<p class="help-block text-left"> 请上传您的头像 </p>
+                            <p class="help-block text-left"> 请上传您的头像 </p>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icon-leaf"></i></span>
                                 <input class="form-control" type="file" id="photo" name="photo" placeholder="请上传您的头像" >
                             </div>
 							<div class="row">
-								<div class="col-sm-12 remember-me">
-									 <label class="checkbox"><input type="checkbox"> 我同意 <a href="#">服务条款</a>.</label>
-								</div>
-							</div>
-							<div class="row">
 								<div class="col-sm-12 cta">
-									<button class="btn btn-main btn-large"><i class="icon-plus"></i>注册</button>
+									<button class="btn btn-main btn-large"><i class="icon-plus"></i>保存信息</button>
 								</div>
 							</div>
 							<div class="related-links">
-								<h5>已经注册? <a href="/login">登录</a></h5>
+								<h5><a href="/profile">放弃保存</a></h5>
 							</div>					
 						</form>
 					</div>

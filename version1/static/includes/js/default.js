@@ -136,3 +136,4 @@ function resizeSideMenuHeight() {
 	$('#sidemenu > li > ul').css('height', $(window).height() + 'px');
 	$('#sidemenu').css('height', $(window).height() + 'px');
 }
+

@@ -6,6 +6,8 @@ from django.http import HttpResponseRedirect
 
 
 def login(request):
+    if request.user.is_active:
+        return HttpResponseRedirect("/index")
     error = ""
     if request.method == 'POST':
         username = request.POST.get('username', '')
@@ -15,12 +17,8 @@ def login(request):
         # Correct password, and the user is marked "active"
             auth.login(request, user)
         # Redirect to a success page.
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/index")
         else:
             error = "登陆失败"
-
-    # else:
-    #     # Show an error page
-    #     return HttpResponseRedirect("/login")
     pageTree = [{'url':"/login",'name':"登陆页"}]
     return render_to_response("login.html",{'error':error,'pageName':"请登陆",'pageTree':pageTree},context_instance=RequestContext(request))

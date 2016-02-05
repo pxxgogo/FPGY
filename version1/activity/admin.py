@@ -5,17 +5,14 @@ class ActivityAdmin(admin.ModelAdmin):
     fieldsets = [
         ('name',               {'fields': ['name']}),
         ('date',              {'fields': ['date']}),
-        ('planNum',             {'fields': ['planNum']}),
-        ('currentNum',              {'fields': ['currentNum']}),
+        ('publishTime',              {'fields': ['publishTime']}),
+        ('publisher',              {'fields': ['publisher']}),
         ('position',            {'fields': ['position']}),
-        ('summaryContent',            {'fields': ['summaryContent']}),
-        ('info',            {'fields': ['info']}),
-        ('ddl',            {'fields': ['ddl']}),
+        ('content',            {'fields': ['content']}),
         ('adminOrganization',            {'fields': ['adminOrganization']}),
-        ('participant',            {'fields': ['participant']}),
-        ('inDate',            {'fields': ['inDate']}),
+        ('type',            {'fields': ['type']}),
     ]
-    list_display = ('name','date','planNum','currentNum','position','summaryContent','info','ddl','adminOrganization','inDate')
+    list_display = ('name','publishTime','date','position','content','adminOrganization','type')
 
 admin.site.register(Activity, ActivityAdmin)
 # Register your models here.

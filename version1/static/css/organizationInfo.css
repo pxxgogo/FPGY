@@ -1,0 +1,17 @@
+.org-Info-container
+{
+	position : relative;
+	padding:30px;
+	z-index:0;
+}
+
+.org-Members-container
+{
+    position : relative;
+	padding:30px;
+	z-index:4;
+}
+
+.billboard {
+	padding : 30px;
+}

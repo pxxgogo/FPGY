@@ -32,6 +32,7 @@ class RegisterForm(forms.Form):
     photo = forms.ImageField()
     password = forms.CharField()
     studentID = forms.CharField()
+    gender = forms.CharField()
 
     def save(self, commit=True):
         user = AccountUser();
@@ -41,6 +42,10 @@ class RegisterForm(forms.Form):
         user.phone = self.cleaned_data["phone"]
         user.major = self.cleaned_data["major"]
         user.photo = self.cleaned_data["photo"]
+        if self.cleaned_data["gender"] == "M":
+            user.gender = "男"
+        else:
+            user.gender = "女"
         user.password = make_password(self.cleaned_data["password"], None, 'pbkdf2_sha256')
         user.studentID = self.cleaned_data["studentID"]
         if commit:

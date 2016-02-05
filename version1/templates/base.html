@@ -13,7 +13,7 @@
 		<link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
 		<link href="/static/bootstrap/font-awesome/css/font-awesome.css" rel="stylesheet">
 		<link href="/static/includes/js/bxslider/jquery.bxslider.css" rel="stylesheet">
-		<!-- <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/static/includes/themes/default/style.css" rel="stylesheet">
 		{% block link %}
 		{% endblock %}
@@ -33,15 +33,16 @@
 					    <span class="icon-bar"></span>
 					    <span class="icon-bar"></span>
 		  			</button>
-		  			<a class="navbar-brand" href="/">Magnet<span class="strap"></span></a>
+		  			<a class="navbar-brand" href="/index">Magnet<span class="strap"></span></a>
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="/">Home</a></li>
+						<li class="active"><a href="/index">Home</a></li>
+						<li><a href="/profile">个人信息</a></li>
+						<li><a href="/organizationList">入驻组织</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="/organizationList">入驻组织</a></li>
 								<li><a href="portfolio.html">Portfolio</a></li>
 								<li><a href="portfolio-item.html">Portfolio Item</a></li>
 								<li><a href="features.html">Features</a></li>
@@ -60,7 +61,6 @@
 								<li><a href="error-404.html">404 Error Page</a></li>	
 							</ul>
 						</li>
-						<li><a href="about.html">About</a></li>
 						<li><a href="contact.html">Contact</a></li>
 						<li class="visible-xs"><a href="/register">注册</a></li>
 						<li class="visible-xs"><a href="/login">登录</a></li>
@@ -71,19 +71,22 @@
 			</div>
 		</div>
 		<ul id="sidemenu" class="sidemenu hidden-xs">
-			<li><a class="sidemenu-brand" href="/">Magnet
+			<li><a class="sidemenu-brand" href="/index">Magnet
 				{% if user.photo %}
 				 <img alt="error" class="admin-pic img-circle" src="{{user.photo.url}}">
 				 {% endif %}
 				 </a>
 			</li>
 			<li>
-				<a class="selected" href="/"><i class="icon-home icon-2x"></i> <br/>Home</a></li>
+				<a class="{{homeClass}}" href="/index"><i class="icon-home icon-2x"></i> <br/>首页</a></li>
+			<li>
+				<a class="{{profileClass}}"href="/profile"><i class="icon-info icon-2x"></i> <br/>个人信息</a></li>
+			<li>
+				<a class="{{organizationListClass}}"href="/organizationList"><i class="icon-info icon-2x"></i> <br/>入驻组织</a></li>
 			<li>
 				<a class="flyout" href="#"><i class="icon-file icon-2x"></i> <br/>Pages <i class="icon-caret-right"></i></a>
 				<ul class="submenu">
 					<li class="submenu-section"><i class="icon-plus"></i> Page Templates</li>
-					<li class="submenu-item"><a href="/organizationList">入驻组织</a></li>
 					<li class="submenu-item"><a href="portfolio.html">Portfolio</a></li>
 					<li class="submenu-item"><a href="portfolio-item.html">Portfolio Item</a></li>
 					<li class="submenu-item"><a href="features.html">Features</a></li>
@@ -102,7 +105,6 @@
 					<li class="submenu-item"><a href="error-404.html">404 Error Page</a></li>
 				</ul>
 			</li>
-			<li><a href="about.html"><i class="icon-info icon-2x"></i> <br/>About</a></li>
 			<li><a href="contact.html"><i class="icon-phone icon-2x"></i> <br/>Contact</a></li>
 	    	</ul>
 		<div class="content-area">
@@ -134,15 +136,9 @@
 			</div>
 				{% block content %}
 				{% endblock %}
-			<footer>
-					<div class="container">
-						<div class="row">
-						</div>		
-					</div>
-				</footer>
-				<div id="footer-bottom">
+			<div id="footer-bottom" >
 					&copy; 2016 Magnet. All rights reserved.
-				</div>
+			</div>
 		</div>
 		<script src="/static/includes/js/jquery-2.0.3.min.js"></script>
 		<script src="/static/bootstrap/js/bootstrap.min.js"></script>

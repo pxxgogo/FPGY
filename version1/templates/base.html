@@ -41,10 +41,15 @@
 						<li><a href="/myBillboard">最新动态</a></li>
 						<li><a href="/organizationList">入驻组织</a></li>
 						<li><a href="contact.html">联系我</a></li>
+						{% if user.is_authenticated %}
+						<li class="visible-xs"><a href="/logout">注销</a></li>
+						<li class="hidden-xs"><a href="/logout" class="btn btn-main btn-sm btn-header">注销</a></li>
+						{% else %}
 						<li class="visible-xs"><a href="/register">注册</a></li>
 						<li class="visible-xs"><a href="/login">登录</a></li>
-						<li class="hidden-xs"><a href="/register" class="btn btn-main btn-sm btn-header">Sign Up</a></li>
-                    				<li class="hidden-xs"><a href="/login" class="btn btn-main btn-sm btn-header">Sign In</a></li>
+						<li class="hidden-xs"><a href="/register" class="btn btn-main btn-sm btn-header">注册</a></li>
+                    				<li class="hidden-xs"><a href="/login" class="btn btn-main btn-sm btn-header">登录</a></li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>

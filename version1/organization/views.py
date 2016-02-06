@@ -3,11 +3,14 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from organization.models import Organization
 from notification.models import Notification
+from django.http import HttpResponseRedirect
 from activity.models import Activity
 
 
 
 def list(request):
+    if not request.user.is_active:
+        return HttpResponseRedirect("/login")
     pageTree = [{'url':"/organizationList",'name':"入驻组织列表"}]
     user = request.user
     organizationListAdmin = Organization.objects.filter(admin = user)
@@ -40,6 +43,8 @@ def list(request):
     return render_to_response("organizationList.html",{'organizationListClass' : 'selected', 'pageName' : "入驻组织", 'pageTree':pageTree, 'organizationList' : organizationList},context_instance=RequestContext(request))
 
 def organizationInfo(request,id):
+    if not request.user.is_active:
+        return HttpResponseRedirect("/login")
     pageTree = [{'url':"/organizationList",'name':"入驻组织列表"}]
     organizationModel = Organization.objects.get(id = id)
     organization = {}
@@ -97,6 +102,7 @@ def organizationInfo(request,id):
             toAddEvent['publisher'] = notificationList[s1].publisher.realName
             toAddEvent['content'] = notificationList[s1].content
             toAddEvent['summaryContent'] = notificationList[s1].title
+            toAddEvent['notificationID'] = notificationList[s1].id
             eventsList.append(toAddEvent)
             s1 += 1
         else:
@@ -111,6 +117,7 @@ def organizationInfo(request,id):
             toAddEvent['content'] = activitiesList[s2].content
             toAddEvent['summaryContent'] = activitiesList[s2].name
             toAddEvent['position'] = activitiesList[s2].position
+            toAddEvent['activityID'] = activitiesList[s2].id
             eventsList.append(toAddEvent)
             s2 += 1
     while s1 < len1:
@@ -124,6 +131,7 @@ def organizationInfo(request,id):
         toAddEvent['publisher'] = notificationList[s1].publisher.realName
         toAddEvent['content'] = notificationList[s1].content
         toAddEvent['summaryContent'] = notificationList[s1].title
+        toAddEvent['notificationID'] = notificationList[s1].id
         eventsList.append(toAddEvent)
         s1 += 1
     while s2 < len2:
@@ -138,6 +146,17 @@ def organizationInfo(request,id):
         toAddEvent['content'] = activitiesList[s2].content
         toAddEvent['summaryContent'] = activitiesList[s2].name
         toAddEvent['position'] = activitiesList[s2].position
+        toAddEvent['activityID'] = activitiesList[s2].id
         eventsList.append(toAddEvent)
         s2 += 1
     return render_to_response("organizationInfo.html",{'organizationListClass' : 'selected', 'organization' : organization, 'pageName' : "入驻组织" , 'memberList' : memberList, 'eventsList' : eventsList, 'pageTree':pageTree}, context_instance=RequestContext(request))
+
+def organizationInfoChanged(request, organizationID):
+    organization = Organization.objects.get(id = organizationID)
+    if request.POST['name']:
+        organization.name = request.POST['name']
+    organization.description = request.POST['description']
+    if request.FILES:
+        organization.photo = request.FILES['photo']
+    organization.save()
+    return HttpResponseRedirect("/organization/%s" % organizationID)

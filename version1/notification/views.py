@@ -3,8 +3,8 @@ from notification.models import Notification
 from django.http import HttpResponseRedirect
 import datetime
 
-def addNotification(request, organizaitonID):
-    organzation = Organization.objects.get(id = organizaitonID)
+def addNotification(request, organizationID):
+    organzation = Organization.objects.get(id = organizationID)
     notification = Notification()
     notification.adminOrganization = organzation
     notification.publisher = request.user
@@ -15,8 +15,11 @@ def addNotification(request, organizaitonID):
     notification.TerminalDate = request.POST['TerminalDate']
     notification.type = 1
     notification.save()
-    return HttpResponseRedirect("/organization/%s" % organizaitonID)
+    return HttpResponseRedirect("/organization/%s" % organizationID)
 
-
+def deleteNotification(request, organizationID, notificationID):
+    notification = Notification.objects.get(id = notificationID)
+    notification.delete()
+    return HttpResponseRedirect("/organization/%s" % organizationID)
 
 # Create your views here.

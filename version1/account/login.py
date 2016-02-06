@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 
 def login(request):
     if request.user.is_active:
-        return HttpResponseRedirect("/index")
+        return HttpResponseRedirect("/profile")
     error = ""
     if request.method == 'POST':
         username = request.POST.get('username', '')
@@ -17,7 +17,7 @@ def login(request):
         # Correct password, and the user is marked "active"
             auth.login(request, user)
         # Redirect to a success page.
-            return HttpResponseRedirect("/index")
+            return HttpResponseRedirect("/profile")
         else:
             error = "登陆失败"
     pageTree = [{'url':"/login",'name':"登陆页"}]

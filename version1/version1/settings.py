@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'organization',
     'activity',
     'notification',
+    'suggestion',
 )
 
 MIDDLEWARE_CLASSES = (

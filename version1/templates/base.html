@@ -33,35 +33,14 @@
 					    <span class="icon-bar"></span>
 					    <span class="icon-bar"></span>
 		  			</button>
-		  			<a class="navbar-brand" href="/index">Magnet<span class="strap"></span></a>
+		  			<a class="navbar-brand" href="/profile">Magnet<span class="strap"></span></a>
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="/index">Home</a></li>
 						<li><a href="/profile">个人信息</a></li>
+						<li><a href="/myBillboard">最新动态</a></li>
 						<li><a href="/organizationList">入驻组织</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="portfolio.html">Portfolio</a></li>
-								<li><a href="portfolio-item.html">Portfolio Item</a></li>
-								<li><a href="features.html">Features</a></li>
-								<li><a href="pricing.html">Pricing</a></li>
-								<li><a href="team.html">Team</a></li>
-								<li><a href="careers.html">Careers</a></li>
-								<li><a href="clients.html">Clients</a></li>
-								<li><a href="faq.html">FAQ</a></li>
-								<li><a href="blog.html">Blog</a></li>
-								<li><a href="blog-post.html">Blog Single Post</a></li>
-								<li><a href="gallery.html">Gallery</a></li>
-								<li><a href="/register">注册</a></li>
-								<li><a href="/login">登陆</a></li>
-								<li><a href="recover-password.html">Recover Password</a></li>
-								<li><a href="coming-soon.html">Coming Soon Page</a></li>
-								<li><a href="error-404.html">404 Error Page</a></li>	
-							</ul>
-						</li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="contact.html">联系我</a></li>
 						<li class="visible-xs"><a href="/register">注册</a></li>
 						<li class="visible-xs"><a href="/login">登录</a></li>
 						<li class="hidden-xs"><a href="/register" class="btn btn-main btn-sm btn-header">Sign Up</a></li>
@@ -71,41 +50,20 @@
 			</div>
 		</div>
 		<ul id="sidemenu" class="sidemenu hidden-xs">
-			<li><a class="sidemenu-brand" href="/index">Magnet
+			<li><a class="sidemenu-brand" href="/profile">Magnet
 				{% if user.photo %}
 				 <img alt="error" class="admin-pic img-circle" src="{{user.photo.url}}">
 				 {% endif %}
 				 </a>
 			</li>
 			<li>
-				<a class="{{homeClass}}" href="/index"><i class="icon-home icon-2x"></i> <br/>首页</a></li>
+				<a class="{{profileClass}}"href="/profile"><i class="icon-user icon-2x"></i> <br/>个人信息</a></li>
 			<li>
-				<a class="{{profileClass}}"href="/profile"><i class="icon-info icon-2x"></i> <br/>个人信息</a></li>
-			<li>
-				<a class="{{organizationListClass}}"href="/organizationList"><i class="icon-info icon-2x"></i> <br/>入驻组织</a></li>
-			<li>
-				<a class="flyout" href="#"><i class="icon-file icon-2x"></i> <br/>Pages <i class="icon-caret-right"></i></a>
-				<ul class="submenu">
-					<li class="submenu-section"><i class="icon-plus"></i> Page Templates</li>
-					<li class="submenu-item"><a href="portfolio.html">Portfolio</a></li>
-					<li class="submenu-item"><a href="portfolio-item.html">Portfolio Item</a></li>
-					<li class="submenu-item"><a href="features.html">Features</a></li>
-					<li class="submenu-item"><a href="pricing.html">Pricing</a></li>
-					<li class="submenu-item"><a href="team.html">Team</a></li>
-					<li class="submenu-item"><a href="careers.html">Careers</a></li>
-					<li class="submenu-item"><a href="clients.html">Clients</a></li>
-					<li class="submenu-item"><a href="faq.html">FAQ</a></li>
-					<li class="submenu-item"><a href="blog.html">Blog</a></li>
-					<li class="submenu-item"><a href="blog-post.html">Blog Single Post</a></li>
-					<li class="submenu-item"><a href="gallery.html">Gallery</a></li>
-					<li class="submenu-item"><a href="/register">注册</a></li>
-					<li class="submenu-item"><a href="/login">登录</a></li>
-					<li class="submenu-item"><a href="recover-password.html">Recover Password</a></li>
-					<li class="submenu-item"><a href="coming-soon.html">Coming Soon Page</a></li>
-					<li class="submenu-item"><a href="error-404.html">404 Error Page</a></li>
-				</ul>
+				<a class="{{myBillboardClass}}"href="/myBillboard"><i class="icon-info icon-2x"></i><br/>最新动态</a>
 			</li>
-			<li><a href="contact.html"><i class="icon-phone icon-2x"></i> <br/>Contact</a></li>
+			<li>
+				<a class="{{organizationListClass}}" href="/organizationList"><i class="icon-home icon-2x"></i> <br/>入驻组织</a></li>
+			<li><a class="{{contactClass}}" href="/contact"><i class="icon-phone icon-2x"></i> <br/>联系我</a></li>
 	    	</ul>
 		<div class="content-area">
 				<div class="login-strip">
@@ -119,18 +77,24 @@
 			<div class="page-header">
 				<div class="container">
 					<h3>{{pageName}}
-						<small class="pull-right hidden-xs"> 
-							<a href="/">首页</a>
-							{%for page in pageTree%}
+						<small class="pull-right hidden-xs">
+							{% for page in pageTree %}
+							{% if forloop.first %}
+							<a href="{{page.url}}">{{page.name}}</a>
+							{% else %}
 							 > <a href="{{page.url}}">{{page.name}}</a>
-							{%endfor%}
+							{% endif %}
+							{% endfor %}
 						</small>
 					</h3>
-						<small class="visible-xs"> 
-							<a href="/">首页</a>
-							{%for page in pageTree%}
+						<small class="visible-xs">
+							{% for page in pageTree %}
+							{% if forloop.first %}
+							<a href="{{page.url}}">{{page.name}}</a>
+							{% else %}
 							 > <a href="{{page.url}}">{{page.name}}</a>
-							{%endfor%}
+							{% endif %}
+							{% endfor %}
 						</small>
 				</div>			
 			</div>

@@ -7,6 +7,8 @@ from django.contrib.auth.hashers import make_password
 
 
 def profile(request):
+    if not request.user.is_active:
+        return HttpResponseRedirect("/login")
     error = ""
     pageTree = [{'url':"/profile",'name':"个人信息"}]
     return render_to_response("profile.html",{'error':error, 'pageName':"个人信息", 'pageTree':pageTree, 'profileClass':'selected'},context_instance=RequestContext(request))

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block link %}
-<link href="/static/css/organizationInfo.css" rel="stylesheet">
+<link href="/static/css/billboard.css" rel="stylesheet">
 <link href="/static/includes/js/isotope/jquery.isotope.css" rel="stylesheet">
 {% endblock %}
 
@@ -33,10 +33,47 @@
               <h3>{{organization.name}}</h3>
               <small>{{organization.type}}</small> </div>
             <div class="pricing-item">{{organization.description}}</div>
-            <div class="pricing-item"><a href="/changeInfo" class="btn btn-main btn-default">修改信息</a></div>
+            <div class="pricing-item"><a href="#changeOrganizationInfo" data-toggle="modal" class="btn btn-main btn-default">修改信息</a></div>
           </div>
         </div>
       </div>
+       <div class="modal fade" id="changeOrganizationInfo" tabindex="10000" role="dialog" aria-labelledby="changeOrganizationInfoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header ">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 class="modal-title" id="changeOrganizationInfoLabel"> 修改信息 </h3>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                  <form role="form" action="/organizationInfoChanged_{{organization.id}}" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                        {% if error %}
+                            <div class="form-group">
+                                <!--a href="#" class="pull-right label-forgot">Forgot email?</a-->
+                                {{error}}
+                            </div>
+                        {% endif %}
+                  <div class="form-group">
+                                <label for="organizationName"> 组织名: </label>
+                                <input id="organizationName" class="form-control" type="text" name="name" placeholder="{{organization.name}}">
+                            </div>
+                  <div class="form-group">
+                                <label for="description">组织简介</label>
+                                <textarea id="description" class="form-control" rows="5" name="description">{{organization.description}}</textarea>
+                            </div>
+                  <p class="help-block text-left"> 上传新的组织头像(若不更新,则可忽视) </p>
+                            <div class="form-group">
+                                <input class="form-control" type="file" id="photo" name="photo" placeholder="上传新的组织头像" >
+                            </div>
+                      <button class="btn btn-main btn-large"><i class="icon-plus"></i>确认修改</button>
+                      <h5><a href="">放弃修改</a></h5>
+                  </form>
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
     </div>
   </div>
   <div id = "Members" class = "tab-pane fade in active">
@@ -129,7 +166,7 @@
                     </tr>
                   </tbody>
                 </table>
-                  <button class="btn btn-main btn-large"><i class="icon-minus"></i>删除消息</button>
+                  <a href="/deleteNotification_{{organization.id}}_{{event.notificationID}}" class="btn btn-main btn-large"><i class="icon-minus"></i>删除消息</a>
               </div>
             </div>
             {% else %}
@@ -152,7 +189,7 @@
                   </tr>
                 </tbody>
               </table>
-                <button class="btn btn-main btn-large"><i class="icon-minus"></i>删除活动</button>
+                <a href="/deleteActivity_{{organization.id}}_{{event.activityID}}" class="btn btn-main btn-large"><i class="icon-minus"></i>删除活动</a>
             </div>
           </div>
           {% endifequal %} </div>
@@ -183,15 +220,15 @@
                         {% endif %}
                             <div class="form-group">
                                 <label for="title"> 标题 </label>
-                                <input id="title" class="form-control" type="text" name="title">
+                                <input id="title" class="form-control" type="text" required="" name="title">
                             </div>
                             <div class="form-group">
                                 <label for="notificationContent">通知内容</label>
-                                <textarea id="notificationContent" class="form-control" rows="5" name="content"></textarea>
+                                <textarea id="notificationContent" class="form-control"  rows="5" name="content"></textarea>
                             </div>
 							 <div class="form-group">
                                 <label for="TerminalDate"> 通知有效期至: </label>
-                                <input id="TerminalDate" class="form-control" type="date" name="TerminalDate">
+                                <input id="TerminalDate" class="form-control" required="" type="date" name="TerminalDate">
                             </div>
 							<div class="form-inline">
 									<button class="btn btn-main btn-large"><i class="icon-plus"></i>发布</button>
@@ -223,15 +260,15 @@
                         {% endif %}
                             <div class="form-group">
                                 <label for="activityName"> 标题 </label>
-                                <input id="activityName" class="form-control" type="text" name="name">
+                                <input id="activityName" class="form-control" required="" type="text" name="name">
                             </div>
                             <div class="form-group">
                                 <label for="position"> 活动地点 </label>
-                                <input id="position" class="form-control" type="text" name="position">
+                                <input id="position" class="form-control" required="" type="text" name="position">
                             </div>
                             <div class="form-group">
                                 <label for="time"> 活动时间: </label>
-                                <input id="time" class="form-control" type="datetime-local" name="date">
+                                <input id="time" class="form-control" required="" type="datetime-local" name="date">
                             </div>
                             <div class="form-group">
                                 <label for="activityContent">活动内容</label>

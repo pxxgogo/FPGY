@@ -18,29 +18,18 @@
 								<span class="input-group-addon"><i class="icon-user"></i></span>
 								<input id="name" class="form-control" type="text" name="realName" placeholder="真实姓名:{{user.realName}}">
 							</div>
-                            <div class="form-group">
+                            <div class="input-group">
+								<span class="input-group-addon"><i class="icon-user"></i></span>
                                 {%ifequal user.gender '男'%}
-								<div class="radio" align="left">
-								<label>
-  									<input type="radio" name="gender" id="male" value="M" checked> 男
-								</label>
-									</div>
-								<div class="radio" align="left">
-								<label>
-  									<input type="radio" name="gender" id="female" value="F"> 女
-								</label>
-									</div>
+								<select class="form-control" required="" name="gender">
+  								<option value="男" selected="selected">男</option>
+  								<option value="女">女</option>
+							</select>
                                 {%else%}
-                                <div class="radio" align="left">
-								<label>
-  									<input type="radio" name="gender" id="male" value="M"> 男
-								</label>
-									</div>
-								<div class="radio" align="left">
-								<label>
-  									<input type="radio" name="gender" id="female" value="F" checked> 女
-								</label>
-									</div>
+                                <select class="form-control" required="" name="gender">
+  								<option value="M">男</option>
+  								<option value="F" selected="selected">女</option>
+							</select>
                                 {% endifequal %}
 							</div>
 							<div class="input-group">
@@ -59,7 +48,7 @@
                                 <span class="input-group-addon"><i class="icon-pencil"></i></span>
                                 <input id="major" class="form-control" type="text" name="major" placeholder="专业:{{user.major}}">
                             </div>
-                            <p class="help-block text-left"> 请上传您的头像 </p>
+                            <p class="help-block text-left"> 请上传新的头像(若不更新,则可忽视)  </p>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icon-leaf"></i></span>
                                 <input class="form-control" type="file" id="photo" name="photo" placeholder="请上传您的头像" >

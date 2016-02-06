@@ -3,8 +3,8 @@ from activity.models import Activity
 from django.http import HttpResponseRedirect
 import datetime
 
-def addActivity(request, organizaitonID):
-    organzation = Organization.objects.get(id = organizaitonID)
+def addActivity(request, organizationID):
+    organzation = Organization.objects.get(id = organizationID)
     activity = Activity()
     activity.adminOrganization = organzation
     activity.publisher = request.user
@@ -16,4 +16,9 @@ def addActivity(request, organizaitonID):
     activity.position = request.POST['position']
     activity.type = 1
     activity.save()
-    return HttpResponseRedirect("/organization/%s" % organizaitonID)
+    return HttpResponseRedirect("/organization/%s" % organizationID)
+
+def deleteActivity(request, organizationID, activityID):
+    activity = Activity.objects.get(id = activityID)
+    activity.delete()
+    return HttpResponseRedirect("/organization/%s" % organizationID)

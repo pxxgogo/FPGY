@@ -1,0 +1,8 @@
+db.sqlite3
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist
+build
+/media/*

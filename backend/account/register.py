@@ -2,7 +2,7 @@
 from django import forms
 from django.http import HttpResponseRedirect
 from account.models import AccountUser
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template.context_processors import csrf
 from django.template import RequestContext
 from django.contrib.auth.hashers import make_password
@@ -79,6 +79,6 @@ def register(request):
     pageTree = [{'url': "/register", 'name': "注册页"}]
     c['pageTree'] = pageTree
     c['pageName'] = "请注册"
-    return render_to_response("register.html", c, context_instance=RequestContext(request))
+    return render(request, "register.html", c)
 
 # Create your models here.

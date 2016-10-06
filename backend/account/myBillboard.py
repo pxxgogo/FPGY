@@ -1,5 +1,5 @@
 ﻿__author__ = 'pxxgogo'
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 from django.contrib import auth
 from django.http import HttpResponseRedirect
@@ -13,10 +13,10 @@ def myBillboard(request):
         return HttpResponseRedirect("/login")
     error = ""
     eventsList = []
-    organizationList = Organization.objects.filter(member = request.user)
+    organizationList = Organization.objects.filter(member=request.user)
     for organization in organizationList:
-        notificationList = Notification.objects.filter(adminOrganization = organization).order_by("-publishTime")
-        activitiesList = Activity.objects.filter(adminOrganization = organization).order_by("-publishTime")
+        notificationList = Notification.objects.filter(adminOrganization=organization).order_by("-publishTime")
+        activitiesList = Activity.objects.filter(adminOrganization=organization).order_by("-publishTime")
         len1 = len(notificationList)
         len2 = len(activitiesList)
         s1 = 0
@@ -90,11 +90,14 @@ def myBillboard(request):
             eventsList.append(toAddEvent)
             s2 += 1
     length = len(eventsList)
-    for i in range(length-1):
-        for j in range(i,length):
+    for i in range(length - 1):
+        for j in range(i, length):
             if eventsList[i]['publishTime'] < eventsList[j]['publishTime']:
                 temp = eventsList[i]
                 eventsList[i] = eventsList[j]
                 eventsList[j] = temp
-    pageTree = [{'url':"/myBillboard",'name':"最新动态"}]
-    return render_to_response("myBillboard.html",{'error':error, 'pageName':"最新动态", 'eventsList' : eventsList , 'myBillboardClass' : 'selected' , 'pageTree':pageTree},context_instance=RequestContext(request))
+    pageTree = [{'url': "/myBillboard", 'name': "最新动态"}]
+    return render(request, "myBillboard.html",
+                              {'error': error,
+                               'pageName': "最新动态",
+                               'eventsList': eventsList, 'myBillboardClass': 'selected', 'pageTree': pageTree})

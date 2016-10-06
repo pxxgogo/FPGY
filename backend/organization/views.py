@@ -1,5 +1,5 @@
 ﻿__author__ = 'pxxgogo'
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 from organization.models import Organization
 from notification.models import Notification
@@ -7,13 +7,12 @@ from django.http import HttpResponseRedirect
 from activity.models import Activity
 
 
-
 def list(request):
     if not request.user.is_active:
         return HttpResponseRedirect("/login")
-    pageTree = [{'url':"/organizationList",'name':"入驻组织列表"}]
+    pageTree = [{'url': "/organizationList", 'name': "入驻组织列表"}]
     user = request.user
-    organizationListAdmin = Organization.objects.filter(admin = user)
+    organizationListAdmin = Organization.objects.filter(admin=user)
     organizationList = []
     existID = set([])
     for organization in organizationListAdmin:
@@ -26,7 +25,7 @@ def list(request):
         toAddOrganization['membersNum'] = organization.member.count()
         existID.add(toAddOrganization['id'])
         organizationList.append(toAddOrganization)
-    organizationListDev = Organization.objects.filter(member = user)
+    organizationListDev = Organization.objects.filter(member=user)
     for organization in organizationListDev:
         len1 = len(existID)
         existID.add(organization.id)
@@ -40,18 +39,21 @@ def list(request):
         toAddOrganization['state'] = '参与者'
         toAddOrganization['membersNum'] = organization.member.count()
         organizationList.append(toAddOrganization)
-    return render_to_response("organizationList.html",{'organizationListClass' : 'selected', 'pageName' : "入驻组织", 'pageTree':pageTree, 'organizationList' : organizationList},context_instance=RequestContext(request))
+    return render(request, "organizationList.html",
+                  {'organizationListClass': 'selected',
+                   'pageName': "入驻组织", 'pageTree': pageTree, 'organizationList': organizationList})
 
-def organizationInfo(request,id):
+
+def organizationInfo(request, id):
     if not request.user.is_active:
         return HttpResponseRedirect("/login")
-    pageTree = [{'url':"/organizationList",'name':"入驻组织列表"}]
-    organizationModel = Organization.objects.get(id = id)
+    pageTree = [{'url': "/organizationList", 'name': "入驻组织列表"}]
+    organizationModel = Organization.objects.get(id=id)
     user = request.user
     adminList = organizationModel.admin.all()
     adminFlag = False
     for admin in adminList:
-        if cmp(admin.username,user.username) == 0:
+        if cmp(admin.username, user.username) == 0:
             adminFlag = True
             break
     organization = {}
@@ -60,7 +62,7 @@ def organizationInfo(request,id):
     organization['type'] = "学生会";
     organization['description'] = organizationModel.description
     organization['photoUrl'] = organizationModel.photo.url
-    pageTree.append({'url' : "/organization/%s" % id, 'name' : organizationModel.name})
+    pageTree.append({'url': "/organization/%s" % id, 'name': organizationModel.name})
     administrationListModel = organizationModel.admin.all()
     memberList = []
     existID = set([])
@@ -89,8 +91,8 @@ def organizationInfo(request,id):
         toAddMember['state'] = '普通成员'
         toAddMember['username'] = member.username
         memberList.append(toAddMember)
-    notificationList = Notification.objects.filter(adminOrganization = organizationModel).order_by("-publishTime")
-    activitiesList = Activity.objects.filter(adminOrganization = organizationModel).order_by("-publishTime")
+    notificationList = Notification.objects.filter(adminOrganization=organizationModel).order_by("-publishTime")
+    activitiesList = Activity.objects.filter(adminOrganization=organizationModel).order_by("-publishTime")
     eventsList = []
     len1 = len(notificationList)
     len2 = len(activitiesList)
@@ -156,10 +158,14 @@ def organizationInfo(request,id):
         toAddEvent['activityID'] = activitiesList[s2].id
         eventsList.append(toAddEvent)
         s2 += 1
-    return render_to_response("organizationInfo.html",{'adminFlag' : adminFlag , 'organizationListClass' : 'selected', 'organization' : organization, 'pageName' : "入驻组织" , 'memberList' : memberList, 'eventsList' : eventsList, 'pageTree':pageTree}, context_instance=RequestContext(request))
+    return render(request, "organizationInfo.html",
+                  {'adminFlag': adminFlag,
+                   'organizationListClass': 'selected', 'organization': organization, 'pageName': "入驻组织",
+                   'memberList': memberList, 'eventsList': eventsList, 'pageTree': pageTree})
+
 
 def organizationInfoChanged(request, organizationID):
-    organization = Organization.objects.get(id = organizationID)
+    organization = Organization.objects.get(id=organizationID)
     if request.POST['name']:
         organization.name = request.POST['name']
     organization.description = request.POST['description']

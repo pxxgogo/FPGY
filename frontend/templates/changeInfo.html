@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{%block content%}
+			<div class="container">
+				<div class="login-box">
+					<div class="login-header">
+						<h4>个人信息修改</h4>
+					</div>
+					<div class="login-form">
+						<form role="form" action="/infoChanged" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% if error %}
+                            <div class="form-group">
+                                <!--a href="#" class="pull-right label-forgot">Forgot email?</a-->
+                                {{error}}
+                            </div>
+                        {% endif %}
+							<div class="input-group">
+								<span class="input-group-addon"><i class="icon-user"></i></span>
+								<input id="name" class="form-control" type="text" name="realName" placeholder="真实姓名:{{user.realName}}">
+							</div>
+                            <div class="input-group">
+								<span class="input-group-addon"><i class="icon-user"></i></span>
+                                {%ifequal user.gender '男'%}
+								<select class="form-control" required="" name="gender">
+  								<option value="男" selected="selected">男</option>
+  								<option value="女">女</option>
+							</select>
+                                {%else%}
+                                <select class="form-control" required="" name="gender">
+  								<option value="M">男</option>
+  								<option value="F" selected="selected">女</option>
+							</select>
+                                {% endifequal %}
+							</div>
+							<div class="input-group">
+                                <span class="input-group-addon"><i class="icon-user"></i></span>
+                                <input id="studentID" class="form-control" type="text" name="studentID" placeholder="学号:{{user.studentID}}">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">@</span>
+                                <input id="E-mail" class="form-control" type="text" name="email" placeholder="电子邮箱:{{user.email}}">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icon-pencil"></i></span>
+                                <input id="phone" class="form-control" type="text" name="phone" placeholder="联系电话:{{user.phone}}">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icon-pencil"></i></span>
+                                <input id="major" class="form-control" type="text" name="major" placeholder="专业:{{user.major}}">
+                            </div>
+                            <p class="help-block text-left"> 请上传新的头像(若不更新,则可忽视)  </p>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icon-leaf"></i></span>
+                                <input class="form-control" type="file" id="photo" name="photo" placeholder="请上传您的头像" >
+                            </div>
+							<div class="row">
+								<div class="col-sm-12 cta">
+									<button class="btn btn-main btn-large"><i class="icon-plus"></i>保存信息</button>
+								</div>
+							</div>
+							<div class="related-links">
+								<h5><a href="/profile">放弃保存</a></h5>
+							</div>					
+						</form>
+					</div>
+				</div>
+			</div>
+{%endblock%}

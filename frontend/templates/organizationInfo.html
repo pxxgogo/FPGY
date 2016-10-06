@@ -1,0 +1,315 @@
+{% extends "base.html" %}
+
+{% block link %}
+<link href="/static/css/billboard.css" rel="stylesheet">
+<link href="/static/includes/js/isotope/jquery.isotope.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div style="width : 100%; min-height:645px">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 hidden-xs">
+      <h4>{{organization.name}}</h4>
+    </div>
+    <div class="col-sm-3" role="navigation">
+      <ul class="nav nav-pills org-nav">
+        <li role="presentation"><a href="#Info" data-toggle="tab">基本信息</a></li>
+        <li role="presentation"  class="active"><a href="#Members" data-toggle="tab">成员信息</a></li>
+        <li role="presentation"><a href="#NAndA" data-toggle="tab">最新动态</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container tab-content">
+  <div id = "Info" class = "tab-pane fade">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="pricing profileImg"> <img alt="error" class="center-block" src="{{organization.photoUrl}}"> </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="pricing pricing-recommended">
+            <div class="pricing-header">
+              <h3>{{organization.name}}</h3>
+              <small>{{organization.type}}</small> </div>
+            <div class="pricing-item">{{organization.description}}</div>
+            <div class="pricing-item">
+                {% if adminFlag %}
+                <a href="#changeOrganizationInfo" data-toggle="modal" class="btn btn-main btn-default">修改信息</a>
+                {% else %}
+                <button class="btn" disabled>修改信息</button>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+       <div class="modal fade" id="changeOrganizationInfo" tabindex="10000" role="dialog" aria-labelledby="changeOrganizationInfoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header ">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 class="modal-title" id="changeOrganizationInfoLabel"> 修改信息 </h3>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                  <form role="form" action="/organizationInfoChanged_{{organization.id}}" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                        {% if error %}
+                            <div class="form-group">
+                                <!--a href="#" class="pull-right label-forgot">Forgot email?</a-->
+                                {{error}}
+                            </div>
+                        {% endif %}
+                  <div class="form-group">
+                                <label for="organizationName"> 组织名: </label>
+                                <input id="organizationName" class="form-control" type="text" name="name" placeholder="{{organization.name}}">
+                            </div>
+                  <div class="form-group">
+                                <label for="description">组织简介</label>
+                                <textarea id="description" class="form-control" rows="5" name="description">{{organization.description}}</textarea>
+                            </div>
+                  <p class="help-block text-left"> 上传新的组织头像(若不更新,则可忽视) </p>
+                            <div class="form-group">
+                                <input class="form-control" type="file" id="photo" name="photo" placeholder="上传新的组织头像" >
+                            </div>
+                      <button class="btn btn-main btn-large"><i class="icon-plus"></i>确认修改</button>
+                      <h5><a href="">放弃修改</a></h5>
+                  </form>
+              </div>
+            </div>
+          </div>
+        </div>
+       </div>
+    </div>
+  </div>
+  <div id = "Members" class = "tab-pane fade in active">
+    <div class="container">
+      <div id="team">
+        <div id="team_filters_container">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4 hidden-xs">
+                <h4>成员列表</h4>
+              </div>
+              <div class="col-sm-8">
+                <ul id="team_filters">
+                  <li><a href="#" data-filter="*" class="active">All</a></li>
+                  <li class="separator">/</li>
+                  <li><a href="#" data-filter=".management">管理员</a></li>
+                  <li class="separator">/</li>
+                  <li><a href="#" data-filter=".development">普通成员</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div id="team_container"> {% for member in memberList%}
+            <div class="photo {{member.class}}"> <img src="{{member.photoUrl}}" class="img-responsive" alt="" /> <a href="#" class="mask">
+              <h4>{{member.name}}<small> {{member.username}} </small></h4>
+              <small>{{member.gender}}</small> <br>
+              <small>{{member.state}}</small> </a></div>
+            {% endfor %} </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div  id = "NAndA" class = "tab-pane fade">
+    <div class = "container billboard">
+      <table class = "table table-hover ">
+        <tbody>
+        
+        {% if eventsList %}
+        {% for event in eventsList%}
+        {% ifequal event.type "notification" %}
+        <tr href="#v{{event.id}}" class="{{event.class}} row"  data-toggle="modal">
+            <td> {{event.summaryContent}}</td>
+          <td> 发布时间:{{event.publishTime}} </td>
+          <td> 有效时间至{{event.TerminalDate}} </td>
+          <td> 发布者:{{event.publisher}}</td>
+        </tr>
+        {% else %}
+        <tr href="#v{{event.id}}" class="{{event.class}} row"  data-toggle="modal">
+            <td> {{event.summaryContent}}</td>
+          <td> 发布时间:{{event.publishTime}} </td>
+          <td> 活动时间:{{event.TerminalDateTime}} </td>
+          <td> 发布者:{{event.publisher}}</td>
+        </tr>
+        {% endifequal %}
+        {% endfor %}
+        {% else %}
+        <tr>
+          <td> 暂无动态信息 </td>
+        </tr>
+        {% endif %}
+          </tbody>
+        
+      </table>
+      {% if eventsList %}
+      {% for event in eventsList%}
+      <div class="modal fade" id="v{{event.id}}" tabindex="{{event.id}}+1" role="dialog" aria-labelledby="event_v{{event.id}}" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header ">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              {% ifequal event.type "notification" %}
+              <h3 class="modal-title" id="event_v{{event.id}}"> {{event.summaryContent}} </h3>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <table class="table table-striped">
+                  <tbody>
+                    <tr>
+                      <td> 发布时间:{{event.publishTime}} </td>
+                      <td> 有效时间至{{event.TerminalDate}} </td>
+                    </tr>
+                    <tr>
+                      <td> 发布者:{{event.publisher}} </td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2"> {{event.content}} </td>
+                    </tr>
+                  </tbody>
+                </table>
+                  {% if adminFlag %}
+                  <a href="/deleteNotification_{{organization.id}}_{{event.notificationID}}" class="btn btn-main btn-large"><i class="icon-minus"></i>删除消息</a>
+                  {% else %}
+                  <button class="btn" disabled><i class="icon-minus"></i>删除消息</button>
+                  {% endif %}
+              </div>
+            </div>
+            {% else %}
+            <h3 class="modal-title" id="event_v{{event.id}}"> {{event.summaryContent}} </h3>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <td> 发布时间:{{event.publishTime}} </td>
+                    <td> 活动时间:{{event.TerminalDateTime}} </td>
+                  </tr>
+                  <tr>
+                    <td> 活动地点:{{event.position}} </td>
+                    <td> 发布者:{{event.publisher}} </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"> {{event.content}} </td>
+                  </tr>
+                </tbody>
+              </table>
+                {% if adminFlag %}
+                <a href="/deleteActivity_{{organization.id}}_{{event.activityID}}" class="btn btn-main btn-large"><i class="icon-minus"></i>删除活动</a>
+                {% else %}
+                  <button class="btn" disabled><i class="icon-minus"></i>删除活动</button>
+                {% endif %}
+            </div>
+          </div>
+          {% endifequal %} </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+      <p>
+          {% if adminFlag %}
+          <a class="btn btn-default btn-main" href="#addNewNotification" role="button" data-toggle="modal">发布消息</a>
+          <a class="btn btn-default btn-main" href="#addNewActivity" role="button" data-toggle="modal">发布活动</a>
+          {% else %}
+          <button class="btn" disabled>发布消息</button>
+          <button class="btn" disabled>发布活动</button>
+          {% endif %}
+      </p>
+      <div class="modal fade" id="addNewNotification" tabindex="0" role="dialog" aria-labelledby="addNewNotificationLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 class="modal-title" id="addNewNotificationLabel"> 发布消息 </h3>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+                <form role="form" action="/addNotificationTo_{{organization.id}}/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% if error %}
+                            <div class="form-group">
+                                <!--a href="#" class="pull-right label-forgot">Forgot email?</a-->
+                                {{error}}
+                            </div>
+                        {% endif %}
+                            <div class="form-group">
+                                <label for="title"> 标题 </label>
+                                <input id="title" class="form-control" type="text" required="" name="title">
+                            </div>
+                            <div class="form-group">
+                                <label for="notificationContent">通知内容</label>
+                                <textarea id="notificationContent" class="form-control"  rows="5" name="content"></textarea>
+                            </div>
+							 <div class="form-group">
+                                <label for="TerminalDate"> 通知有效期至: </label>
+                                <input id="TerminalDate" class="form-control" required="" type="date" name="TerminalDate">
+                            </div>
+							<div class="form-inline">
+									<button class="btn btn-main btn-large"><i class="icon-plus"></i>发布</button>
+                                <h5><a href="">放弃发布</a></h5>
+							</div>
+						</form>
+            </div>
+          </div>
+          </div>
+      </div>
+    </div>
+
+      <div class="modal fade" id="addNewActivity" tabindex="1" role="dialog" aria-labelledby="addNewActivityLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 class="modal-title" id="addNewActivityLabel"> 发布活动 </h3>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+                <form role="form" action="/addActivityTo_{{organization.id}}/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% if error %}
+                            <div class="form-group">
+                                <!--a href="#" class="pull-right label-forgot">Forgot email?</a-->
+                                {{error}}
+                            </div>
+                        {% endif %}
+                            <div class="form-group">
+                                <label for="activityName"> 标题 </label>
+                                <input id="activityName" class="form-control" required="" type="text" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="position"> 活动地点 </label>
+                                <input id="position" class="form-control" required="" type="text" name="position">
+                            </div>
+                            <div class="form-group">
+                                <label for="time"> 活动时间: </label>
+                                <input id="time" class="form-control" required="" type="datetime-local" name="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="activityContent">活动内容</label>
+                                <textarea id="activityContent" class="form-control" rows="5" name="content"></textarea>
+                            </div>
+							<div class="form-inline">
+									<button class="btn btn-main btn-large"><i class="icon-plus"></i>发布</button>
+                                <h5><a href="">放弃发布</a></h5>
+							</div>
+						</form>
+            </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+{% block script %} 
+<script src= "/static/includes/js/isotope/jquery.isotope.min.js"></script> 
+{% endblock %} 

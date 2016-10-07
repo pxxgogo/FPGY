@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="pricing profileImg">
+							<img alt="error" class="center-block user-photo" src="{{user.photo.url}}">
+						</div>
+						</div>
+					<div class="col-sm-8">
+						<div class="pricing pricing-recommended">
+							<div class="pricing-header">
+								<h3>{{user.realName}}</h3>
+								<small>{{user.username}}</small>
+							</div>
+							<div class="pricing-item">性别:<strong>{{user.gender}}</strong></div>
+							<div class="pricing-item">学号:<strong>{{user.studentID}}</strong></div>
+							<div class="pricing-item">专业:<strong>{{user.major}}</strong></div>
+							<div class="pricing-item">电子邮箱:<strong>{{user.email}}</strong></div>
+							<div class="pricing-item">手机:<strong>{{user.phone}}</strong></div>
+							<div class="pricing-item"><a href="/changeInfo" class="btn btn-main btn-default">修改信息</a>
+								</hr>
+								<a href="/changePassword" class="btn btn-main btn-default">修改密码</a></div>
+						</div>
+					</div>
+				</div>
+				<div style="height : 115px"></div>
+			</div>
+{% endblock %}
+
+{% block link %}
+	<link href="/static/css/profile.css" rel="stylesheet">
+{% endblock %}
+

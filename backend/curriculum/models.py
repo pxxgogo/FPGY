@@ -16,4 +16,5 @@ class Curriculum(models.Model):
     groupID = models.CharField(max_length=255, default="")
 
 
+
 # Create your models here.

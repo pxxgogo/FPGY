@@ -26,6 +26,10 @@ def api(request):
             returnCode = logOutOnMobile(request.POST)
             return JsonResponse({"return_code": returnCode}, safe=False)
 
+        if type == "sign_in":
+            returnCode = signInEvent(request.POST)
+
+
 
 
 

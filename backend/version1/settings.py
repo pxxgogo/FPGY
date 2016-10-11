@@ -15,7 +15,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = '5h)b2$5d!v1zr-x3f&k+m)d6(fhr$3)whk@z4fbodc%aje+zi4'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -43,6 +41,7 @@ INSTALLED_APPS = (
     'notification',
     'suggestion',
     'curriculum',
+    'signInEvent',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,7 +60,7 @@ ROOT_URLCONF = 'version1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,7 +74,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'version1.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -122,6 +120,6 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'account.AccountUser'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
- )
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"

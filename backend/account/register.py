@@ -79,7 +79,7 @@ def registerOnMobile(request):
     form = PhotoForm(request.POST, request.FILES)
     user = AccountUser()
     user.username = request.POST["username"]
-    user.realName = request.POST["realName"]
+    user.realName = request.POST["real_name"]
     user.email = request.POST["email"]
     user.phone = request.POST["phone"]
     if request.POST["gender"] == "M":
@@ -87,8 +87,8 @@ def registerOnMobile(request):
     else:
         user.gender = "女"
     user.password = make_password(request.POST["password"], None, 'pbkdf2_sha256')
-    user.studentID = request.POST["studentID"]
-    user.personID = request.POST["personID"]
+    user.studentID = request.POST["student_ID"]
+    user.personID = request.POST["person_ID"]
     if form.is_valid():
         form.save(user)
         return 0

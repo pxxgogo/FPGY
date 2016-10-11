@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from account.register import isUsernameExist
 from account.register import registerOnMobile
 from account.login import logInOnMobile
+from account.logout import logOutOnMobile
 from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
@@ -20,6 +21,12 @@ def api(request):
         if type == "log_in":
             returnCode, accountData = logInOnMobile(request.POST)
             return JsonResponse({"return_code": returnCode, "account_data": accountData}, safe=False)
+
+        if type == "log_out":
+            returnCode = logOutOnMobile(request.POST)
+            return JsonResponse({"return_code": returnCode}, safe=False)
+
+
 
 
 

@@ -98,6 +98,6 @@ def myBillboard(request):
                 eventsList[j] = temp
     pageTree = [{'url': "/myBillboard", 'name': "最新动态"}]
     return render(request, "myBillboard.html",
-                              {'error': error,
-                               'pageName': "最新动态",
-                               'eventsList': eventsList, 'myBillboardClass': 'selected', 'pageTree': pageTree})
+                  {'error': error,
+                   'pageName': "最新动态",
+                   'eventsList': eventsList, 'myBillboardClass': 'selected', 'pageTree': pageTree})

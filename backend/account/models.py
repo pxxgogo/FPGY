@@ -8,7 +8,7 @@ class AccountUser(AbstractUser):
     studentID = models.CharField(max_length=13)
     photo = models.ImageField(upload_to = "account")
     gender = models.CharField(max_length=2)
-    personID = models.CharField(max_length=20)
+    personID = models.CharField(max_length=255, default="")
     mobileOn = models.BooleanField(default=False)
     mobileToken = models.CharField(default="", max_length=32)
 

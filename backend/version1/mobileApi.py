@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from account.register import isUsernameExist, registerOnMobile
 from account.login import logInOnMobile
 from account.logout import logOutOnMobile
-from signInEvent.views import createSignInEvent, signIn
+from signInEvent.views import createSignInEvent, signIn, showSignInEvents
 from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
@@ -33,6 +33,15 @@ def api(request):
         if type == "sign_in":
             returnCode = signIn(request.POST)
             return JsonResponse({"return_code": returnCode}, safe=False)
+
+        if type == "show_sign_in_events":
+            returnCode, eventsList = showSignInEvents(request.POST)
+            return JsonResponse({"return_code": returnCode, 'events': eventsList}, safe=False)
+
+
+
+
+
 
 
 

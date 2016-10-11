@@ -8,5 +8,8 @@ class Organization(models.Model):
     description = models.TextField()
     photo = models.ImageField(upload_to="organization")
     type = models.IntegerField()
+    groupID = models.CharField(max_length=255, default="")
+
+
 
 # Create your models here.

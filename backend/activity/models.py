@@ -11,5 +11,4 @@ class Activity(models.Model):
     content =  models.TextField()
     adminOrganization = models.ForeignKey(Organization)
     type = models.IntegerField()
-    groupID = models.CharField(max_length=255, default="")
 # Create your models here.

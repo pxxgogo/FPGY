@@ -12,10 +12,9 @@ class ActivityAdmin(admin.ModelAdmin):
         ('content', {'fields': ['content']}),
         ('adminOrganization', {'fields': ['adminOrganization']}),
         ('type', {'fields': ['type']}),
-        ('groupID', {'fields': ['groupID']}),
 
     ]
-    list_display = ('name', 'publishTime', 'date', 'position', 'content', 'adminOrganization', 'type', 'groupID')
+    list_display = ('name', 'publishTime', 'date', 'position', 'content', 'adminOrganization', 'type')
 
 
 admin.site.register(Activity, ActivityAdmin)

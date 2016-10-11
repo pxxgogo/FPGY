@@ -10,8 +10,10 @@ class OrganizationAdmin(admin.ModelAdmin):
         ('photo', {'fields': ['photo']}),
         ('description', {'fields': ['description']}),
         ('type', {'fields': ['type']}),
+        ('groupID', {'fields': ['groupID']}),
+
     ]
-    list_display = ('name', 'photo', 'type')
+    list_display = ('name', 'photo', 'type', 'groupID')
 
 
 admin.site.register(Organization, OrganizationAdmin)

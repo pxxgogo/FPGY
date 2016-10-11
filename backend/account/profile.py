@@ -35,11 +35,9 @@ def infoChanged(request):
             user.phone = request.POST['phone']
         if not request.POST['email'] == "":
             user.email = request.POST['email']
-        if not request.POST['major'] == "":
-            user.major = request.POST['major']
         if request.POST['gender'] == 'M':
             user.gender = "男"
-        else:
+        if request.POST['gender'] == 'F':
             user.gender = "女"
         if request.FILES:
             user.photo = request.FILES['photo']

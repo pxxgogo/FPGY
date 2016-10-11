@@ -1,9 +1,9 @@
 __author__ = 'pxxgogo'
 from django.http import JsonResponse
-from account.register import isUsernameExist
-from account.register import registerOnMobile
+from account.register import isUsernameExist, registerOnMobile
 from account.login import logInOnMobile
 from account.logout import logOutOnMobile
+from signInEvent.views import createSignInEvent, signIn
 from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
@@ -26,8 +26,18 @@ def api(request):
             returnCode = logOutOnMobile(request.POST)
             return JsonResponse({"return_code": returnCode}, safe=False)
 
+        if type == "create_sign_in_event":
+            returnCode, eventID = createSignInEvent(request.POST)
+            return JsonResponse({"return_code": returnCode, 'event_id': eventID}, safe=False)
+
         if type == "sign_in":
-            returnCode = signInEvent(request.POST)
+            returnCode = signIn(request.POST)
+            return JsonResponse({"return_code": returnCode}, safe=False)
+
+
+
+
+
 
 
 

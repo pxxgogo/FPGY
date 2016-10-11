@@ -9,7 +9,7 @@ class Curriculum(models.Model):
     teacher= models.ManyToManyField(AccountUser, related_name='teacher')
     student = models.ManyToManyField(AccountUser, related_name='student')
     name = models.CharField(max_length=200)
-    time = models.DateTimeField('Holding time')
+    time = models.CharField(max_length=200)
     position = models.CharField(max_length=300)
     content = models.TextField()
     type = models.IntegerField()

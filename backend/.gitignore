@@ -6,5 +6,5 @@ db.sqlite3
 dist
 build
 /media/*
-/fpgy_python_env/*
+/fpgy_env/*
 /.idea/*

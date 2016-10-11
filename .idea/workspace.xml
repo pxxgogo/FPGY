@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e632b1b7-50b1-4ffb-acbd-7f4712dc2719" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/version1/mobileApi.py" afterPath="$PROJECT_DIR$/backend/version1/mobileApi.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/version1/urls.py" afterPath="$PROJECT_DIR$/backend/version1/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/requirements_python.txt" afterPath="$PROJECT_DIR$/backend/requirements_python.txt" />
     </list>
     <ignored path="MagnetV1.0.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,16 +49,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/templates/profile.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="register.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/account/register.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -92,7 +81,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mobileApi.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mobileApi.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/version1/mobileApi.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
@@ -119,11 +108,21 @@
       <file leaf-file-name="login.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/account/login.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="55" column="24" selection-start-line="55" selection-start-column="24" selection-end-line="55" selection-end-column="24" />
+            <state relative-caret-position="139">
+              <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
               <folding>
                 <element signature="e#23#58#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requirements_python.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/requirements_python.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -165,10 +164,11 @@
         <option value="$PROJECT_DIR$/backend/templates/profile.html" />
         <option value="$PROJECT_DIR$/backend/account/register.py" />
         <option value="$PROJECT_DIR$/backend/account/models.py" />
-        <option value="$PROJECT_DIR$/backend/account/login.py" />
         <option value="$PROJECT_DIR$/backend/account/profile.py" />
         <option value="$PROJECT_DIR$/backend/version1/urls.py" />
         <option value="$PROJECT_DIR$/backend/version1/mobileApi.py" />
+        <option value="$PROJECT_DIR$/backend/account/login.py" />
+        <option value="$PROJECT_DIR$/backend/requirements_python.txt" />
       </list>
     </option>
   </component>
@@ -274,6 +274,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MagnetV1.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="prj2_fpgy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="account" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -649,7 +667,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/version1/account/models.py" />
     <entry file="file://$PROJECT_DIR$/version1/manage.py" />
     <entry file="file://$PROJECT_DIR$/version1/version1/settings.py" />
     <entry file="file://$PROJECT_DIR$/version1/templates/changeInfo.html" />
@@ -770,16 +787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/account/login.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="55" column="24" selection-start-line="55" selection-start-column="24" selection-end-line="55" selection-end-column="24" />
-          <folding>
-            <element signature="e#23#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/account/register.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="394">
@@ -823,6 +830,24 @@
           <folding>
             <element signature="e#23#59#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/account/login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+          <folding>
+            <element signature="e#23#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/requirements_python.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>

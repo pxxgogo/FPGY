@@ -10,9 +10,9 @@
   }
 }
 @media (max-width: 760px){	
-	body{
-		padding-top:80px !important;
-	}
+	/*body{*/
+		/*padding-top:80px !important;*/
+	/*}*/
 
 	.container{
 		padding-right: 15px !important;
@@ -379,7 +379,7 @@ h1,h2,h3,h4,h5{
 	color: #fff;
 	background-color: #b00;
 	border-color: #b00;
-	margin-top:15px;
+	/*margin-top:15px;*/
 }
 
 .navbar-default .navbar-toggle:hover,

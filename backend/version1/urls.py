@@ -27,6 +27,7 @@ import activity.views
 import account.myBillboard
 import version1.contact
 import suggestion.views
+import version1.mobileApi
 
 
 
@@ -51,5 +52,6 @@ urlpatterns = [
     url(r'^contact$', version1.contact.contact),
     url(r'^organizationInfoChanged_(?P<organizationID>\d+)', organization.views.organizationInfoChanged),
     url(r'^submitSuggestion', suggestion.views.submitSuggestion),
+    url(r'^api$', version1.mobileApi.api),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

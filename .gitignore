@@ -5,4 +5,5 @@ _Store
 .Trashes  
 Icon?  
 ehthumbs.db  
-Thumbs.db  
+Thumbs.db
+/.idea/* 

@@ -24,51 +24,35 @@ from django.contrib.auth.hashers import make_password
 #     list_display = ('username','password','first_name','last_name','email','majority','is_staff','is_active','last_login','date_joined')
 
 
-class RegisterForm(forms.Form):
-    username = forms.CharField()
-    email = forms.EmailField()
-    realName = forms.CharField()
-    phone = forms.CharField()
-    major = forms.CharField()
+class PhotoForm(forms.Form):
     photo = forms.ImageField()
-    password = forms.CharField()
-    studentID = forms.CharField()
-    gender = forms.CharField()
 
-    def save(self, commit=True):
-        user = AccountUser()
-        user.username = self.cleaned_data["username"]
-        user.realName = self.cleaned_data["realName"]
-        user.email = self.cleaned_data["email"]
-        user.phone = self.cleaned_data["phone"]
-        user.major = self.cleaned_data["major"]
+    def save(self, user, commit=True):
         user.photo = self.cleaned_data["photo"]
-        if self.cleaned_data["gender"] == "M":
-            user.gender = "男"
-        else:
-            user.gender = "女"
-        user.password = make_password(self.cleaned_data["password"], None, 'pbkdf2_sha256')
-        user.studentID = self.cleaned_data["studentID"]
+
         if commit:
             user.save()
         return user
-        # def __init__(self,Dict,Files):
-        #     forms.Form.__init__(self)
-        #     self.username = Dict['username']
-        #     self.email = Dict['email']
-        #     self.major = Dict['major']
-        #     self.password = Dict['password']
-        #     self.phone = Dict['password']
-        #     self.realName = Dict['realName']
-        #     self.photo = Files['photo']
 
 
 def register(request):
     error = ""
     if request.method == 'POST':
-        form = RegisterForm(request.POST, request.FILES)
+        form = PhotoForm(request.POST, request.FILES)
+        user = AccountUser()
+        user.username = request.POST["username"]
+        user.realName = request.POST["realName"]
+        user.email = request.POST["email"]
+        user.phone = request.POST["phone"]
+        if request.POST["gender"] == "M":
+            user.gender = "男"
+        else:
+            user.gender = "女"
+        user.password = make_password(request.POST["password"], None, 'pbkdf2_sha256')
+        user.studentID = request.POST["studentID"]
+        user.personID = "#"
         if form.is_valid():
-            new_user = form.save()
+            form.save(user)
             return HttpResponseRedirect("/login")
         else:
             # assert False
@@ -82,3 +66,31 @@ def register(request):
     return render(request, "register.html", c)
 
 # Create your models here.
+
+def isUsernameExist(dict):
+    userList = AccountUser.objects.filter(username=dict["username"])
+    if len(userList) == 0:
+        return 0
+    else:
+        return 1
+
+
+def registerOnMobile(request):
+    form = PhotoForm(request.POST, request.FILES)
+    user = AccountUser()
+    user.username = request.POST["username"]
+    user.realName = request.POST["realName"]
+    user.email = request.POST["email"]
+    user.phone = request.POST["phone"]
+    if request.POST["gender"] == "M":
+        user.gender = "男"
+    else:
+        user.gender = "女"
+    user.password = make_password(request.POST["password"], None, 'pbkdf2_sha256')
+    user.studentID = request.POST["studentID"]
+    user.personID = request.POST["personID"]
+    if form.is_valid():
+        form.save(user)
+        return 0
+    else:
+        return 1

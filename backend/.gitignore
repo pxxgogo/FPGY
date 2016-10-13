@@ -8,3 +8,5 @@ build
 /media/*
 /fpgy_env/*
 /.idea/*
+templates
+static

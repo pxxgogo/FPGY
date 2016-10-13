@@ -80,32 +80,34 @@
 					<a href="/login"><i class="icon-signin"></i>登录</a>
 					{% endif %}
 				</div>
-			<div class="page-header">
-				<div class="container">
-					<h3>{{pageName}}
-						<small class="pull-right hidden-xs">
-							{% for page in pageTree %}
-							{% if forloop.first %}
-							<a href="{{page.url}}">{{page.name}}</a>
-							{% else %}
-							 > <a href="{{page.url}}">{{page.name}}</a>
-							{% endif %}
-							{% endfor %}
-						</small>
-					</h3>
-						<small class="visible-xs">
-							{% for page in pageTree %}
-							{% if forloop.first %}
-							<a href="{{page.url}}">{{page.name}}</a>
-							{% else %}
-							 > <a href="{{page.url}}">{{page.name}}</a>
-							{% endif %}
-							{% endfor %}
-						</small>
-				</div>			
-			</div>
+{#			<div class="page-header">#}
+{#				<div class="container">#}
+{#					<h3>{{pageName}}#}
+{#						<small class="pull-right hidden-xs">#}
+{#							{% for page in pageTree %}#}
+{#							{% if forloop.first %}#}
+{#							<a href="{{page.url}}">{{page.name}}</a>#}
+{#							{% else %}#}
+{#							 > <a href="{{page.url}}">{{page.name}}</a>#}
+{#							{% endif %}#}
+{#							{% endfor %}#}
+{#						</small>#}
+{#					</h3>#}
+{#						<small class="visible-xs">#}
+{#							{% for page in pageTree %}#}
+{#							{% if forloop.first %}#}
+{#							<a href="{{page.url}}">{{page.name}}</a>#}
+{#							{% else %}#}
+{#							 > <a href="{{page.url}}">{{page.name}}</a>#}
+{#							{% endif %}#}
+{#							{% endfor %}#}
+{#						</small>#}
+{#				</div>#}
+{#			</div>#}
+            <div class="content-panel">
 				{% block content %}
 				{% endblock %}
+            </div>
 			<!--<div id="footer-bottom" >-->
 					<!--&copy; 2016 FPGY. All rights reserved.-->
 			<!--</div>-->

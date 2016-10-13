@@ -3045,3 +3045,7 @@ small.pull-right {
     /*padding-bottom: 9px!important;*/
     border-bottom: 0px solid #eee!important;
 }
+
+.content-panel {
+    margin-top: 50px;
+}

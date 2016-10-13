@@ -1023,12 +1023,11 @@ h1,h2,h3,h4,h5{
 .pricing-header{
 	padding-top:5px;
 	padding-bottom:20px;
-	color:#777;
 }
 
 .pricing-header h3{
 	font-family: 'Open Sans','Lucida Sans Unicode','Lucida Grande',sans-serif;
-	color:#333;
+	color: #000000;
 	font-size:30px;
 }
 .pricing-item{
@@ -1036,10 +1035,10 @@ h1,h2,h3,h4,h5{
 	padding-bottom:15px;
 	border-top:1px solid #ccc;
 	font-size:14px;
-	color:#777;
+	color: #c7c7c7;
 }
 .pricing-item strong{
-	color:#555;
+	color: #000000;
 }
 
 .admin-pic {
